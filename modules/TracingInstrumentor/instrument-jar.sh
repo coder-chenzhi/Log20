@@ -15,11 +15,11 @@ outputJar="$5"
 scriptDir="$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")"
 
 # Class path to run application and Soot
-classPath="${JAVA8_HOME}/jre/lib/rt.jar"
-classPath="$classPath:${JAVA8_HOME}/jre/lib/jce.jar"
-classPath="$classPath:$SOOT_HOME/soot-trunk.jar"
+classPath="${JAVA_HOME}/jre/lib/rt.jar"
+classPath="$classPath:${JAVA_HOME}/jre/lib/jce.jar"
+classPath="$classPath:$scriptDir/soot-trunk.jar"
 classPath="$classPath:$scriptDir/bin/."
-classPath="$classPath:$scriptDir/lib/InstrumentationTools.jar"
+classPath="$classPath:$scriptDir/lib/InstrumentationToolsTracingOnly.jar"
 
 # Unzipped jar output
 inputDir=/tmp/jarOutput/
@@ -34,9 +34,9 @@ classPathList=$inputDir/classPaths.txt
 find $inputDir -type f -name "*.class" | cut -d'/' -f4- > $classPathList
 
 # Class path used for analysis
-anaClassPath="${JAVA7_HOME}/jre/lib/rt.jar"
-anaClassPath="$anaClassPath:${JAVA7_HOME}/jre/lib/jce.jar"
-anaClassPath="$anaClassPath:$scriptDir/lib/InstrumentationTools.jar"
+anaClassPath="${JAVA_HOME}/jre/lib/rt.jar"
+anaClassPath="$anaClassPath:${JAVA_HOME}/jre/lib/jce.jar"
+anaClassPath="$anaClassPath:$scriptDir/lib/InstrumentationToolsTracingOnly.jar"
 anaClassPath="$anaClassPath:$inputDir"
 
 methodSigToIdPath="MethodSignatureMapping.log"
